@@ -40,12 +40,12 @@
 
 
 </div>
-<button onclick="javascript:roll_dice()">Roll Dice</button>
+<br>
 
 <p>
-<br><br>
-Current Player=> <i id="player">1</i>
-<br>
+<button onclick="javascript:roll_dice()">Roll Dice</button>
+for Player=> <i id="player">1</i>
+<br><br><br>
 Dice Value => <i id="dice_val"></i>
 <br>
 </p>
@@ -54,16 +54,24 @@ Dice Value => <i id="dice_val"></i>
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script>
 
-var player1=0,
-	player2=0,
+var player={1:0,
+	2:0}
 	current_player=1,
 	dice=0; 
 
+var snl={
+			"22":4,  //snake
+			"17":8, //snake
+			"11":2, //snake
+
+			"5":16,   //Ladder
+			"9":20,  //Ladder
+			"14":23  //Ladder
+}
+
+
 	$(document).ready(function(){
-		$("#box4").addClass("player1");
-		$("#box11").addClass("player2");
-
-
+	
 // initializing players
 	//console.log(roll_dice());
 
@@ -76,8 +84,31 @@ var player1=0,
 function roll_dice() {
 	 dice = Math.floor((Math.random() * 6) + 1);
 	 $("#dice_val").html(dice);
+	 calculate_positions();
 	 swap_player();	
 }
+function calculate_positions (argument) {
+	// body...
+	console.log("current player=> "+current_player);
+	console.log("dice=> "+dice);
+
+	player[current_player]+=dice;
+
+	if(snl[player[current_player]]!= undefined)
+	{ player[current_player]=snl[player[current_player]];
+		console.log("SnL");
+	}
+	console.log("value for:"+current_player+":"+player[current_player])
+	update_display();
+
+}
+
+function update_display () {
+	$('.box').removeClass("player"+current_player);
+	$('#box'+player[current_player]).addClass("player"+current_player);
+
+}
+
 function swap_player () {
 	//current_player=2;
 	if(current_player==1)
