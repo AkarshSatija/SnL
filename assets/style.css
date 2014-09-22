@@ -1,0 +1,22 @@
+.container
+{
+	margin: auto;
+	width: 600px;
+	background-color: #ddd;
+}
+.box
+{
+	background-color: #aaa;
+	width: 100px;
+	height: 100px;
+	float: left;
+	margin: 5px;
+}
+.player1
+{
+	background-color: red !important;
+}
+.player2
+{
+	background-color: blue !important;
+}
