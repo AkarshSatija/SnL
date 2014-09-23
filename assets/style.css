@@ -12,13 +12,14 @@
 	float: left;
 	margin: 5px;
 }
+
 .player1
 {
-	
+	background-color: #f97d8f;
 }
 .player2
 {
-	
+	background-color: #adadf7;
 }
 
 .player1::after
@@ -29,6 +30,7 @@ background-color: red !important;
 height: 10px;
 position: relative;
 bottom: -82px;
+z-index: 10;
 	
 	
 }
@@ -41,6 +43,7 @@ background-color: blue !important;
 height: 10px;
 position: relative;
 bottom: -82px;
+z-index: 10;
 	
 	
 }
