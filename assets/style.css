@@ -14,9 +14,33 @@
 }
 .player1
 {
-	background-color: red !important;
+	
 }
 .player2
 {
-	background-color: blue !important;
+	
+}
+
+.player1::after
+{
+	content: "1";
+width: 10px;
+background-color: red !important;
+height: 10px;
+position: relative;
+bottom: -82px;
+	
+	
+}
+
+.player2::before
+{
+	content: "2";
+width: 10px;
+background-color: blue !important;
+height: 10px;
+position: relative;
+bottom: -82px;
+	
+	
 }

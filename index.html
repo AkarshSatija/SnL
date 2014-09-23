@@ -7,7 +7,7 @@
 <body>
 
 <div class="container">
-
+<img src="assets/images/snakes-and-ladders.png" style="position: absolute;width: 550px;">
 	<div id="box21" class="box">21</div>
 	<div id="box22" class="box">22</div>
 	<div id="box23" class="box">23</div>
@@ -37,20 +37,23 @@
 	<div id="box3" class="box">3</div>
 	<div id="box4" class="box">4</div>
 	<div id="box5" class="box">5</div>
-
+	<div id="box0" class="box player1 player2"></div>
 
 </div>
+
+<div class="actions">
+	<p>
+	<button onclick="javascript:roll_dice()">Roll Dice</button>
+	for Player=> <i id="player">1</i>
+	<br><br><br>
+	Dice Value => <i id="dice_val"></i>
+	<br>
+	</p>
+</div>
+
+
+
 <br>
-
-<p>
-<button onclick="javascript:roll_dice()">Roll Dice</button>
-for Player=> <i id="player">1</i>
-<br><br><br>
-Dice Value => <i id="dice_val"></i>
-<br>
-</p>
-
-
 <script src="bower_components/jquery/dist/jquery.min.js"></script>
 <script>
 
@@ -73,6 +76,7 @@ var snl={
 	$(document).ready(function(){
 	
 // initializing players
+update_display();
 	
 });// ready ends
 
@@ -83,19 +87,41 @@ function roll_dice() {
 	 calculate_positions();
 	 swap_player();	
 }
-function calculate_positions (argument) {
+function calculate_positions () {
 	// body...
+
 	console.log("current player=> "+current_player);
 	console.log("dice=> "+dice);
-
+	if(player[current_player]+dice<=25)
 	player[current_player]+=dice;
 
 	if(snl[player[current_player]]!= undefined)
-	{ player[current_player]=snl[player[current_player]];
-		console.log("SnL");
+	{ 
+		if(snl[player[current_player]]<player[current_player])
+		{
+		console.log("Snake");	
+		}
+		else
+		{
+		console.log("Ladder");
+		}
+
+	player[current_player]=snl[player[current_player]];
+	console.log("SnL");
 	}
+
+	
+
 	console.log("value for:"+current_player+":"+player[current_player])
 	update_display();
+
+	//check if win
+	if(player[current_player]==25)
+	{
+		alert("Player "+current_player+" WINS");
+		location.reload(); //reseting game
+	}
+
 
 }
 
@@ -125,11 +151,11 @@ function swap_player () {
 
 <!--
 Left to do
-1. ending/winning point not done
-2. check before updating position if user goes 25+
-3. determine snake or ladder
+1. ending/winning point not done: DONE
+"2. check before updating position if user goes 25+: DONE
+"3. determine snake or ladder: DONE
 4. LOGS
-5. both player on same place issue?
+5. both player on same place issue: Solved
 6. display snakes and ladders in the view
 
 
